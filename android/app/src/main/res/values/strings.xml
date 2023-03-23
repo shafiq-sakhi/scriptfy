@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Scriptfy</string>
+    <string name="facebook_app_id">666098525285906</string>
+    <string name="fb_login_protocol_scheme">fb1355068491916670</string>
+    <string name="facebook_client_token">ec4d8be2f0510bc96f3ec8ad99f28211</string>
+</resources>

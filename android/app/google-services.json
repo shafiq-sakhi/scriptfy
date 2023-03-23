@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "847365824022",
+    "project_id": "scriptfy-8746d",
+    "storage_bucket": "scriptfy-8746d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:847365824022:android:0a7a9c4b903884a3c59f37",
+        "android_client_info": {
+          "package_name": "com.scriptify.scriptify.scriptify"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "847365824022-ip9c01j5da9ricf59vbli1gv7r6ifvcp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCvO0dQjOPwCeHc8kOG-GZmh8zpxjy_FLU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "847365824022-ip9c01j5da9ricf59vbli1gv7r6ifvcp.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "847365824022-b1k9gev8t6ln56bl6qd9soi7t0asol63.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.scriptify.scriptify.scriptify"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:847365824022:android:a1abf750fcbe00afc59f37",
+        "android_client_info": {
+          "package_name": "com.tariqkarim.scriptfy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "847365824022-ip9c01j5da9ricf59vbli1gv7r6ifvcp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCvO0dQjOPwCeHc8kOG-GZmh8zpxjy_FLU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "847365824022-ip9c01j5da9ricf59vbli1gv7r6ifvcp.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "847365824022-b1k9gev8t6ln56bl6qd9soi7t0asol63.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.scriptify.scriptify.scriptify"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
