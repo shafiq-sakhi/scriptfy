@@ -72,7 +72,9 @@ class ChatTextController extends GetxController {
       );
       print("Response  body     ${response.body}");
       if (response.statusCode == 200) {
-        await addChat(Chat(chatText: response.body,from: 1,roomId: roomId));
+        if(roomId != "0"){
+          await addChat(Chat(chatText: response.body,from: 1,roomId: roomId));
+        }
         addServerMessage(
             TextCompletionModel.fromJson(json.decode(utf8.decode(response.bodyBytes))).choices);
         state.value = ApiState.success;
@@ -97,7 +99,9 @@ class ChatTextController extends GetxController {
     // {"text":":\n\nWell, there are a few things that you can do to increase","index":0,"logprobs":null,"finish_reason":"length"}
     TextCompletionData text = await myMessage(searchTextController.text);
     messages.insert(0, text);
-    await addChat(Chat(chatText: text.text,from: 0,roomId: roomId));
+    if(roomId != "0"){
+      await addChat(Chat(chatText: text.text,from: 0,roomId: roomId));
+    }
   }
 
   Future<TextCompletionData> myMessage(String myText) async{

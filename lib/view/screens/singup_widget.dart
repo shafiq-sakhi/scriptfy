@@ -88,8 +88,7 @@ class _SingupWidgetState extends State<SingupWidget> {
       Get.offAll(LoginWidget());
     } catch (e) {
       _baseController.hideProgress();
-
-      Get.snackbar('$e', '', borderRadius: 10);
+      Get.snackbar('${e}', '', borderRadius: 10);
       print(e);
     }
   }
@@ -151,7 +150,8 @@ class _SingupWidgetState extends State<SingupWidget> {
           _phoneController.text.trim(), _emailController.text.trim(), uid);
     } on FirebaseException catch (e) {
       _baseController.hideProgress();
-      Get.snackbar('$e', '', borderRadius: 10);
+      String error = e.message!.substring(5,e.message!.length-1);
+      Get.snackbar('${e.message}', '', borderRadius: 10);
       //print(e.message);
     } catch (e) {
       _baseController.hideProgress();

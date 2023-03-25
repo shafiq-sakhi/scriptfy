@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
+import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:http/http.dart' as http;
 import 'package:text_to_image/constants/constants.dart';
@@ -9,6 +10,7 @@ import 'package:text_to_image/services/data_services.dart';
 import 'package:text_to_image/utils/app_language.dart';
 import 'package:text_to_image/utils/global_functions.dart';
 import '../../controller/admin_base_controller.dart';
+import '../../home_page.dart';
 
 class PaymentScreen extends StatefulWidget {
   const PaymentScreen({Key? key}) : super(key: key);
@@ -116,22 +118,13 @@ class _PaymentScreenState extends State<PaymentScreen> {
   displayPaymentSheet() async{
     try {
       await Stripe.instance.presentPaymentSheet().then((value) async{
-        showDialog(
-            context: context,
-            builder: (_) => AlertDialog(
-              content: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: const [
-                  Icon(
-                    Icons.check_circle,
-                    color: Colors.green,
-                    size: 100.0,
-                  ),
-                  SizedBox(height: 10.0),
-                  Text("Payment Successful!"),
-                ],
-              ),
-            ));
+        Navigator.of(context).pushAndRemoveUntil(PageRouteBuilder(
+          pageBuilder: (_, __, ___) => MyHomePage(),
+          transitionDuration: Duration(seconds: 2),
+          transitionsBuilder: (_, Animation<double> animation, __, c) =>
+              FadeTransition(opacity: animation, child: c),
+        ), (route) => false);
+        Get.snackbar('Payment Successful', '', borderRadius: 10);
         await incrementStars();
         //make payment intent null after a successful payment
         paymentIntent = null;

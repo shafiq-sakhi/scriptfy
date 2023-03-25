@@ -80,7 +80,7 @@ class AppCacheImage extends StatelessWidget {
               height: height,
               child: const Padding(
                 padding: EdgeInsets.all(8.0),
-                child: NativeProgress(),
+                child: NativeProgress(isBackNav: true,),
               )),
           errorWidget: (context, url, error) =>
               imageFailWidget ?? const Icon(Icons.image),

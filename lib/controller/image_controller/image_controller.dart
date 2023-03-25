@@ -67,8 +67,6 @@ class ImageController extends GetxController {
     }
   }
 
-  // TODO: Add _interstitialAd
-
   // TODO: Implement _loadInterstitialAd()
   void _loadInterstitialAd() {
     InterstitialAd.load(
@@ -98,20 +96,16 @@ class ImageController extends GetxController {
     var status = await Permission.storage.request();
     if (status.isGranted) {
       try {
-        _baseController.showProgress();
+        showOkAlertDialog(
+            context: Get.context!,
+            message: AppLanguage.DOWNLOADING);
         await ImageDownloader.downloadImage(
           url,
           destination: AndroidDestinationType.custom(
             directory: 'Download',
           ),
         );
-        _baseController.hideProgress();
-        showOkAlertDialog(
-            context: Get.context!,
-            title: AppLanguage.DOWNLOAD_IMAGE,
-            message: AppLanguage.DOWNLOAD_COMPLETED);
       } on Exception catch (e) {
-        _baseController.hideProgress();
         log(e.toString());
       }
     }
@@ -136,7 +130,9 @@ class ImageController extends GetxController {
     var status = await Permission.storage.request();
     if (status.isGranted) {
       try {
-        _baseController.showProgress();
+        showOkAlertDialog(
+            context: Get.context!,
+            message: AppLanguage.DOWNLOADING);
         for (var image in (image?.value?.data ?? [])) {
           await ImageDownloader.downloadImage(
             image?.url ?? "",
@@ -145,14 +141,7 @@ class ImageController extends GetxController {
             ),
           );
         }
-
-        _baseController.hideProgress();
-        showOkAlertDialog(
-            context: Get.context!,
-            title: AppLanguage.DOWNLOAD_IMAGE,
-            message: AppLanguage.DOWNLOAD_COMPLETED);
       } on Exception catch (e) {
-        _baseController.hideProgress();
         log(e.toString());
       }
     }

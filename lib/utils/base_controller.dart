@@ -13,6 +13,7 @@ class BaseController //**************************************************
   BuildContext? _dialogContext;
   Function? onStateChange;
   static bool isAlreadyShow = false;
+  bool isBackNavigation = false;
 
   //**************************************************
   BaseController(this._context, this.onStateChange);
@@ -51,7 +52,7 @@ class BaseController //**************************************************
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      NativeProgress(),
+                      NativeProgress(isBackNav: isBackNavigation,),
                       SizedBox(width: 20),
                       Text(AppLanguage.LOADING)
                     ],
@@ -69,6 +70,7 @@ class BaseController //**************************************************
       if (BaseController.isAlreadyShow) {
         BaseController.isAlreadyShow = false;
         Navigator.pop(Get.context!);
+        isBackNavigation = true;
       }
       //if (_dialogContext != null) Navigator.pop(_dialogContext!);
     } catch (E) {}
@@ -76,23 +78,27 @@ class BaseController //**************************************************
 }
 
 class NativeProgress extends StatelessWidget {
-  const NativeProgress({Key? key}) : super(key: key);
+  final bool isBackNav;
+  const NativeProgress({Key? key, required this.isBackNav}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Platform.isAndroid
-        ? const Center(
+    return WillPopScope(
+        child: Platform.isAndroid
+            ? const Center(
             child: SizedBox(
                 height: 30, width: 30, child: CircularProgressIndicator()))
-        : Center(
-            child: Theme(
-                data: ThemeData(
-                    cupertinoOverrideTheme: const CupertinoThemeData(
-                        brightness: Brightness.light,
-                        primaryColor: Colors.white,
-                        barBackgroundColor: Colors.white)),
-                child: const CupertinoActivityIndicator()),
-          );
+            : Center(
+          child: Theme(
+              data: ThemeData(
+                  cupertinoOverrideTheme: const CupertinoThemeData(
+                      brightness: Brightness.light,
+                      primaryColor: Colors.white,
+                      barBackgroundColor: Colors.white)),
+              child: const CupertinoActivityIndicator()),
+        ),
+        onWillPop: ()async => isBackNav
+    );
   }
 }
 

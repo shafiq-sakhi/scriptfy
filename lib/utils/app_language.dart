@@ -247,6 +247,8 @@ class AppLanguage {
 
   static String get  ADD => isEnglish ? "add" : "hinzufügen";
 
+  static String get  DOWNLOADING => isEnglish ? "DOWNLOADING....." : "WIRD HERUNTERGELADEN.....";
+
   static String get  THE_EMAIL_OR_PASSWORD_IS_WRONG => isEnglish ? "The email or password is wrong!" : "Het e-mailadres of wachtwoord is verkeerd!";
 }
 
