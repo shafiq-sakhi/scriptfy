@@ -138,36 +138,36 @@ class _InfoPageState extends State<InfoPage> {
                       }
                     }
                   ]),
-                  OptionItem(title: AppLanguage.LANGUAGE, items: [
-                    {
-                      "icon": Icons.language,
-                      "title": AppLanguage.UPDATE_LANGUAGE,
-                      "callBack": () async {
-                        var isEnglish = DataCache.isEnglish();
-                        var result = await showConfirmationDialog(
-                            context: Get.context!,
-                            title: AppLanguage.UPDATE_LANGUAGE,
-                            message: AppLanguage.SELECT_LANGUAGE,
-                            actions: [
-                              AlertDialogAction(
-                                  isDefaultAction: isEnglish,
-                                  label: AppLanguage.ENGLISH,
-                                  key: "0"),
-                              AlertDialogAction(
-                                  isDefaultAction: !isEnglish,
-                                  label: AppLanguage.GERMAN,
-                                  key: "1"),
-                            ]);
-                        if (result == null) return;
-                        print(result);
-                        if (result == "0")
-                          DataCache.setLanguage(true);
-                        else
-                          DataCache.setLanguage(false);
-                        Get.offAll(SplashScreen());
-                      }
-                    }
-                  ]),
+                  // OptionItem(title: AppLanguage.LANGUAGE, items: [
+                  //   {
+                  //     "icon": Icons.language,
+                  //     "title": AppLanguage.UPDATE_LANGUAGE,
+                  //     "callBack": () async {
+                  //       var isEnglish = DataCache.isEnglish();
+                  //       var result = await showConfirmationDialog(
+                  //           context: Get.context!,
+                  //           title: AppLanguage.UPDATE_LANGUAGE,
+                  //           message: AppLanguage.SELECT_LANGUAGE,
+                  //           actions: [
+                  //             AlertDialogAction(
+                  //                 isDefaultAction: isEnglish,
+                  //                 label: AppLanguage.ENGLISH,
+                  //                 key: "0"),
+                  //             AlertDialogAction(
+                  //                 isDefaultAction: !isEnglish,
+                  //                 label: AppLanguage.GERMAN,
+                  //                 key: "1"),
+                  //           ]);
+                  //       if (result == null) return;
+                  //       print(result);
+                  //       if (result == "0")
+                  //         DataCache.setLanguage(true);
+                  //       else
+                  //         DataCache.setLanguage(false);
+                  //       Get.offAll(SplashScreen());
+                  //     }
+                  //   }
+                  // ]),
                   OptionItem(title: AppLanguage.SUPPORT, items: [
                     {
                       "icon": Icons.info_outline,

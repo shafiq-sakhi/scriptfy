@@ -38,7 +38,7 @@ class ChatTextView extends GetView<ChatTextController> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Text(
-                  AppLanguage.CHAT_GPT,
+                  controller.isStory ? AppLanguage.TEXT_COMPLETION : AppLanguage.CHAT_GPT,
                   style: TextStyle(
                       color: Colors.white,
                       fontSize: 16,

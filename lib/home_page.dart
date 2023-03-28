@@ -16,6 +16,7 @@ import 'package:text_to_image/app/modules/home/views/home_view.dart';
 import 'package:text_to_image/controller/admin_base_controller.dart';
 import 'package:text_to_image/models/user_model.dart';
 import 'package:text_to_image/utils/app_language.dart';
+import 'package:text_to_image/utils/data_cache.dart';
 import 'package:text_to_image/view/screens/infoPage.dart';
 import 'package:text_to_image/view/screens/payment_screen.dart';
 import 'package:text_to_image/view/screens/profile.dart';
@@ -242,7 +243,50 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
               ),
-
+              SizedBox(height: 2,),
+              GestureDetector(
+                onTap: () async {
+                  var isEnglish = DataCache.isEnglish();
+                  var result = await showConfirmationDialog(
+                      context: Get.context!,
+                      title: AppLanguage.UPDATE_LANGUAGE,
+                      message: AppLanguage.SELECT_LANGUAGE,
+                      actions: [
+                        AlertDialogAction(
+                            isDefaultAction: isEnglish,
+                            label: AppLanguage.ENGLISH,
+                            key: "0"),
+                        AlertDialogAction(
+                            isDefaultAction: !isEnglish,
+                            label: AppLanguage.GERMAN,
+                            key: "1"),
+                      ]);
+                  if (result == null) return;
+                  print(result);
+                  if (result == "0")
+                    DataCache.setLanguage(true);
+                  else
+                    DataCache.setLanguage(false);
+                  Get.offAll(SplashScreen());
+                },
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 12.0,top: 13),
+                  child: Row(
+                    children: [
+                      Icon(Icons.language,color: Colors.black,size: 30,),
+                      SizedBox(width: 15,),
+                      Text(
+                        AppLanguage.UPDATE_LANGUAGE,
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontFamily: AppFonts.INTER_REGULAR,
+                            fontSize: 20),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+              SizedBox(height: 10,),
               Expanded(child: Container()),
               GestureDetector(
                 onTap: () async {

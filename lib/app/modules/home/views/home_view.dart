@@ -7,7 +7,7 @@ import 'package:flutter_zoom_drawer/config.dart';
 import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:text_to_image/controller/admin_base_controller.dart';
-import 'package:text_to_image/screens/code_completion.dart';
+import 'package:text_to_image/view/screens/code_completion.dart';
 import 'package:text_to_image/utils/add_helper.dart';
 import 'package:text_to_image/utils/app_cache_image.dart';
 import 'package:text_to_image/utils/app_language.dart';
@@ -107,7 +107,7 @@ class _HomeViewState extends State<HomeView> {
                           color1: Color(0xFFFFAC71),
                           color2: Color(0xFFFF8450),
                           onclick: () {
-                            Navigator.push(context, CupertinoPageRoute(builder: (_)=> CodeCompletion()));
+                            Navigator.push(context, CupertinoPageRoute(builder: (_)=> CodeCompletion(isStory: false,)));
                           },
                         ),
                       ),
@@ -138,8 +138,7 @@ class _HomeViewState extends State<HomeView> {
                           color1: Color(0xFF605780),
                           color2: Color(0xFF909AB8),
                           onclick: () {
-                            Get.toNamed(Routes.CHAT_TEXT, arguments: [{
-                              "room_id" : '0'}]);
+                            Navigator.push(context, CupertinoPageRoute(builder: (_)=> CodeCompletion(isStory: true,)));
                           },
                         ),
                       ),

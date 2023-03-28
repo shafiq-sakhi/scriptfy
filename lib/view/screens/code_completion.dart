@@ -7,10 +7,11 @@ import 'package:text_to_image/models/chat_room.dart';
 import 'package:text_to_image/services/data_services.dart';
 import 'package:text_to_image/utils/app_language.dart';
 import 'package:text_to_image/utils/global_functions.dart';
-import '../controller/admin_base_controller.dart';
+import '../../controller/admin_base_controller.dart';
 
 class CodeCompletion extends StatefulWidget {
-  const CodeCompletion({Key? key}) : super(key: key);
+  final bool isStory;
+  const CodeCompletion({Key? key, required this.isStory}) : super(key: key);
 
   @override
   State<CodeCompletion> createState() => _CodeCompletionState();
@@ -27,7 +28,9 @@ class _CodeCompletionState extends State<CodeCompletion> {
   }
 
   fetchData() async{
-    List<ChatRoom> newRooms = await getChatRooms(AdminBaseController.userData.value.userId!);
+    List<ChatRoom> newRooms = widget.isStory ?
+    await getStoryChatRooms(AdminBaseController.userData.value.userId!)
+        : await getChatRooms(AdminBaseController.userData.value.userId!);
     setState(() {
       rooms.clear();
       rooms.addAll(newRooms);
@@ -40,7 +43,7 @@ class _CodeCompletionState extends State<CodeCompletion> {
       backgroundColor: AppColors.backGroundColor,
       appBar: AppBar(
         backgroundColor: AppColors.pinkLight,
-        title: Text(AppLanguage.CODE_COMPLETION_CHATS),
+        title: Text(widget.isStory ? AppLanguage.TEXT_COMPLETION : AppLanguage.CODE_COMPLETION_CHATS),
       ),
       body: Column(
         children: [
@@ -53,7 +56,7 @@ class _CodeCompletionState extends State<CodeCompletion> {
                   return InkWell(
                     onTap: (){
                       Get.toNamed(Routes.CHAT_TEXT, arguments: [{
-                        "room_id" : room.id}]);
+                        "room_id" : room.id,"is_story" : widget.isStory}]);
                     },
                     child: Container(
                       margin: EdgeInsets.only(bottom: 5,left: 5,right: 5),
@@ -152,7 +155,7 @@ class _CodeCompletionState extends State<CodeCompletion> {
                         showLoadingProgress(context);
                         print(AdminBaseController.userData.value.userId);
                         if(name.isNotEmpty){
-                          await addChatRoom(ChatRoom(roomName: name,
+                          await addStoryChatRoom(ChatRoom(roomName: name,
                               userId: AdminBaseController.userData.value.userId));
                         }
                         fetchData();

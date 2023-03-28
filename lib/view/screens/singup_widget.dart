@@ -40,6 +40,7 @@ class _SingupWidgetState extends State<SingupWidget> {
   String imageUrl = '';
   BaseController _baseController = BaseController(Get.context!, () {});
   String code="";
+  bool agreeOnTermAndCondition = false;
 
   //final _accountType = widget.accountType;
 
@@ -133,6 +134,10 @@ class _SingupWidgetState extends State<SingupWidget> {
       if (_passwordController.text.trim() != _confirmPC.text.trim()) {
         //throw ('Passwords do not match');
         Get.snackbar(AppLanguage.PASSWORD_DONOT_MATCHED, '', borderRadius: 10);
+        return;
+      }
+      if(!agreeOnTermAndCondition){
+        Get.snackbar(AppLanguage.PLEASE_AGREE_ON_POLICY_AND_USE_TERM, '', borderRadius: 10);
         return;
       }
 
@@ -423,6 +428,44 @@ class _SingupWidgetState extends State<SingupWidget> {
                                           ],
                                         ),
                                       ),
+                                    ),
+                                    const SizedBox(height: 15),
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        InkWell(
+                                          onTap: (){
+                                            setState(() {
+                                              if(agreeOnTermAndCondition){
+                                                agreeOnTermAndCondition = false;
+                                              }else{
+                                                agreeOnTermAndCondition = true;
+                                              }
+                                            });
+                                          },
+                                          child: Row(
+                                            children: [
+                                              Container(
+                                                decoration: BoxDecoration(
+                                                    border: Border.all(color: AppColors.blueDark,width: 1),
+                                                    borderRadius: BorderRadius.circular(5),
+                                                    boxShadow: [
+                                                      agreeOnTermAndCondition ? BoxShadow(
+                                                          color: Colors.black12,
+                                                          offset: Offset(0,2),
+                                                          blurRadius: 3,
+                                                          spreadRadius: 1
+                                                      ):BoxShadow(color: Colors.transparent)
+                                                    ]
+                                                ),
+                                                child: Icon(Icons.check,color:agreeOnTermAndCondition ? AppColors.blueDark : AppColors.pinkLight,size: 18,),
+                                              ),
+                                              SizedBox(width: 15,),
+                                              Text(AppLanguage.AGREE_ON_POLICY_AND_USE_TERM,style: TextStyle(color: Colors.black54,fontWeight: FontWeight.bold),)
+                                            ],
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                     const SizedBox(height: 30),
                                     AppButton(

@@ -127,7 +127,6 @@ showLoadingProgress(BuildContext context){
   );
 }
 
-
 bool isDigits(String source){
   try {
     return RegExp(r'^[0-9]+$').hasMatch(source);

@@ -12,10 +12,13 @@ class ChatTextController extends GetxController {
   //TODO: Implement ChatTextController
   dynamic argumentData = Get.arguments;
   late String roomId;
+  late bool isStory;
 
   @override
   void onInit() async{
     roomId = argumentData[0]['room_id'];
+    isStory = argumentData[0]['is_story'];
+    print(isStory);
     print('room id  ---------- '+argumentData[0]['room_id']);
     super.onInit();
   }
@@ -34,7 +37,6 @@ class ChatTextController extends GetxController {
   List<TextCompletionData> messages = <TextCompletionData>[].obs;
 
   var state = ApiState.notFound.obs;
-
 
   getMessagesFromFirebase() async{
     List<Chat> chats = await getChats(roomId);

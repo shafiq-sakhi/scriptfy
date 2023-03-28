@@ -18,9 +18,28 @@ Future addChatRoom(ChatRoom chatRoom) async {
   newDocRef.set(chatRoom.toMap());
 }
 
+
 Future<List<ChatRoom>> getChatRooms(String userId) async {
   List<ChatRoom> rooms = [];
   var collection = db.collection('chat_rooms').orderBy('timestamp', descending: true);
+  var querySnapshot = await collection.where("user_id", isEqualTo: userId).get();
+  for(var queryDoc in querySnapshot.docs){
+    Map<String, dynamic> map = queryDoc.data();
+    rooms.add(ChatRoom.fromMap(map));
+  }
+  return rooms;
+}
+
+Future addStoryChatRoom(ChatRoom chatRoom) async {
+  var newDocRef = db.collection('story_chat_rooms').doc();
+  chatRoom.id = newDocRef.id;
+  chatRoom.timestamp = Timestamp.fromDate(DateTime.now());
+  newDocRef.set(chatRoom.toMap());
+}
+
+Future<List<ChatRoom>> getStoryChatRooms(String userId) async {
+  List<ChatRoom> rooms = [];
+  var collection = db.collection('story_chat_rooms').orderBy('timestamp', descending: true);
   var querySnapshot = await collection.where("user_id", isEqualTo: userId).get();
   for(var queryDoc in querySnapshot.docs){
     Map<String, dynamic> map = queryDoc.data();
