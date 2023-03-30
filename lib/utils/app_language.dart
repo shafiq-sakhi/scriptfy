@@ -251,8 +251,8 @@ class AppLanguage {
 
   static String get  THE_EMAIL_OR_PASSWORD_IS_WRONG => isEnglish ? "The email is wrong!" : "Die E-Mail ist falsch!";
 
-  static String get  PLEASE_AGREE_ON_POLICY_AND_USE_TERM => isEnglish ? "Please agree on policy and terms" : "Ga akkoord met het beleid en de voorwaarden";
+  static String get  PLEASE_AGREE_ON_POLICY_AND_USE_TERM => isEnglish ? "Please agree on policy and terms" : "Bitte stimme unsere Richtlinien \nund Bedingungen zu.";
 
-  static String get  AGREE_ON_POLICY_AND_USE_TERM => isEnglish ? "Agree on policy and terms" : "het eens worden over het \nbeleid en de voorwaarden";
+  static String get  AGREE_ON_POLICY_AND_USE_TERM => isEnglish ? "Agree on policy and terms" : "Bitte stimme unsere Richtlinien \nund Bedingungen zu.";
 }
 

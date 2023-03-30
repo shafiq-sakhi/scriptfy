@@ -18,7 +18,6 @@ Future addChatRoom(ChatRoom chatRoom) async {
   newDocRef.set(chatRoom.toMap());
 }
 
-
 Future<List<ChatRoom>> getChatRooms(String userId) async {
   List<ChatRoom> rooms = [];
   var collection = db.collection('chat_rooms').orderBy('timestamp', descending: true);
